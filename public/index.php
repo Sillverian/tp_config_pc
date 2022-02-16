@@ -1,7 +1,9 @@
 <?php
+// Initialisation de la session
 session_start();
 session_regenerate_id(true);
 
+// Bibliotheques utilisés
 use DI\Bridge\Slim\Bridge;
 use Slim\Views\Twig;
 use TpConfigPc\controllers\ConnexionController;
@@ -9,6 +11,7 @@ use TpConfigPc\controllers\RouteController;
 use TpConfigPc\controllers\InscriptionController;
 use TpConfigPc\controllers\DeconnexionController;
 
+// Permet le chargement des classes
 require "../vendor/autoload.php";
 
 // Connexion à la base de données
@@ -22,10 +25,12 @@ $pdo = new PDO($dsn,$user,$pass);
 $builder = new DI\ContainerBuilder();
 $container = $builder->build();
 
+// Definition des twig au sein du container
 $container->set('twig', function(){
     return Twig::create("../views");
 });
 
+// Definition de la connexion à la BDD au sein du container
 $container->set('pdo', function() use ($pdo){
     return $pdo;
 });
@@ -43,4 +48,5 @@ $app->post("/connexion", [ConnexionController::class, "connexion"]); // Traiteme
 
 $app->get("/deconnexion", [DeconnexionController::class, "deconnexion"]); // Deconnexion
 
+// Lance l'application
 $app->run();
