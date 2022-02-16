@@ -1,0 +1,52 @@
+{% extends "default_layout.html.twig"%}
+
+{% block js %}
+	{{ parent() }}
+
+	<script>
+	// Quand focus sur un input
+	// Supprime le message d'erreur
+	$(document).ready(function () {
+		$("input").focus(function(){
+			$("#error").remove();
+		});
+	});
+	</script>
+{% endblock %}
+
+{% block content %}
+	{{ parent() }}
+
+	<h2 class="d-flex justify-content-center">Formulaire d'inscription</h2>
+
+	{% if error %}
+		<li class="alert alert-danger" id="error">
+			{{ error }}
+		</li>
+	{% endif %}
+	
+
+	<form action="/inscription" method="post" class="border border-primary rounded border-2 p-2">
+		<div class="row mb-2 container-fluid">
+			<div class="col me-2">
+				<label class="form-label ">Nom d'utilisateur</label>
+				<input type="text" class="form-control" name="user_name">
+			</div>
+
+			<div class="col me-2">
+				<label class="form-label col">Mot de passe</label>
+				<input type="password" class="form-control col" name="password">
+			</div>
+
+			<div class="col me-2">
+				<label class="form-label">Confirmation du Mot de passe</label>
+				<input type="password" class="form-control" name="password_confirm">
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<button type="submit" class="btn btn-primary w-100">Envoyer</button>
+		</div>
+	</form>
+
+{% endblock %}

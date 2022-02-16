@@ -1,0 +1,22 @@
+{
+    "name": "administrateur/tp_config_pc",
+    "autoload": {
+        "psr-4": {
+            "TpConfigPc\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alexandre Garron",
+            "email": "alexandre@mail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^4.9",
+        "php-di/slim-bridge": "^3.2",
+        "slim/twig-view": "^3.3",
+        "slim/psr7": "^1.5",
+        "twitter/bootstrap": "^5.1",
+        "components/jquery": "^3.6"
+    }
+}
